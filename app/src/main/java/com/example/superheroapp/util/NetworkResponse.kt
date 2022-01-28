@@ -24,3 +24,10 @@ inline fun <S, E> NetworkResponse<S, E>.doOnError(block: (E) -> Unit): NetworkRe
     }
     return this
 }
+inline fun <S,E,T>NetworkResponse<S,E>.mapSuccess(block: (S) -> T): NetworkResponse<T,E>{
+    return when(this){
+        is NetworkResponse.Success -> NetworkResponse.Success(result = block(this.result))
+        is NetworkResponse.Error -> NetworkResponse.Error(result = this.result)
+    }
+
+}
