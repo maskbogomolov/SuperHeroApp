@@ -7,11 +7,12 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import javax.inject.Inject
 
 interface HeroesHttpClient {
     val api: HeroesService
 }
-class HeroesHttpClientImpl: HeroesHttpClient{
+class HeroesHttpClientImpl @Inject constructor(): HeroesHttpClient{
 
     val logger = HttpLoggingInterceptor().setLevel(level = HttpLoggingInterceptor.Level.BODY)
     val client = OkHttpClient.Builder()

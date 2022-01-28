@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Biography(
     @SerializedName("aliases")
-    val aliases: List<String>,
+    val aliases: List<String?>,
     @SerializedName("publisher")
-    val publisher: String
+    val publisher: String?
 )
