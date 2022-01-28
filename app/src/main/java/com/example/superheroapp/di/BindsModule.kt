@@ -25,6 +25,8 @@ interface BindsModule {
         impl: RemoteDataSourceImpl
     ): RemoteDataSource
 
+    @Suppress("FunctionName")
+    @Binds
     fun bindHeroesRepositoryImpl_to_HeroesRepository(
         impl: HeroesRepositoryImpl
     ):HeroesRepository

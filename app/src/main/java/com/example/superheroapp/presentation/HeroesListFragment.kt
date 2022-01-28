@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.example.superheroapp.R
 import com.example.superheroapp.databinding.FragmentHeroesListBinding
 import com.example.superheroapp.di.appComponent
+import com.example.superheroapp.util.HeroesResult
 import dagger.Lazy
 import javax.inject.Inject
 
@@ -29,8 +30,11 @@ class HeroesListFragment : Fragment(R.layout.fragment_heroes_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val bind = FragmentHeroesListBinding.bind(view)
-        viewModel.hero.observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(),"${it[0].name}",Toast.LENGTH_SHORT).show()
+        viewModel.heroesResult.observe(viewLifecycleOwner){
+            when(it){
+                is HeroesResult.SuccessResult -> Toast.makeText(requireContext(),"${it.result[0].name}",Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
