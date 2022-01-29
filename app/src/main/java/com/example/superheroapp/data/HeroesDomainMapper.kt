@@ -1,15 +1,16 @@
 package com.example.superheroapp.data
 
+import com.example.superheroapp.data.heroes.HeroesEntity
 import com.example.superheroapp.data.module.HeroesDto
 import com.example.superheroapp.domain.Heroes
 
-fun HeroesDto.toDomain(): Heroes{
+fun HeroesEntity.toDomain(): Heroes{
     return Heroes(
         id = this.id,
-        images = this.images.md,
+        images = this.images,
         name = this.name,
-        aliases = this.biography.aliases[0] ?: "not found",
-        publisher = this.biography.publisher ?: "not found"
+        aliases = this.aliases,
+        publisher = this.publisher
 
     )
 }

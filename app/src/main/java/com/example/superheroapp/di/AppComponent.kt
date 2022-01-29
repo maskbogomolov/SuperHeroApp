@@ -6,7 +6,7 @@ import com.example.superheroapp.presentation.HeroesListFragment
 import dagger.Component
 import dagger.Module
 
-@Component(modules = [AppModule::class],dependencies = [AppDeps::class])
+@Component(modules = [AppModule::class,DatabaseModule::class],dependencies = [AppDeps::class])
 interface AppComponent {
 
     fun inject(activity: MainActivity)

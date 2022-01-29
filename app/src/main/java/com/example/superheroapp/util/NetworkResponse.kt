@@ -33,3 +33,10 @@ inline fun <S,E,T>NetworkResponse<S,E>.mapSuccess(block: (S) -> T): NetworkRespo
     }
 
 }
+
+inline fun <S,E> NetworkResponse<S,E>.doOnSuccess(block: (S) -> Unit):NetworkResponse<S,E>{
+    if (this is NetworkResponse.Success){
+        block(this.result)
+    }
+    return this
+}

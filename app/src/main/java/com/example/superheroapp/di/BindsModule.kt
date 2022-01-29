@@ -3,6 +3,8 @@ package com.example.superheroapp.di
 import com.example.superheroapp.data.HeroesRepositoryImpl
 import com.example.superheroapp.data.core.HeroesHttpClient
 import com.example.superheroapp.data.core.HeroesHttpClientImpl
+import com.example.superheroapp.data.heroes.LocalDataSource
+import com.example.superheroapp.data.heroes.LocalDataSourceImpl
 import com.example.superheroapp.data.heroes.RemoteDataSource
 import com.example.superheroapp.data.heroes.RemoteDataSourceImpl
 import com.example.superheroapp.domain.HeroesRepository
@@ -30,4 +32,10 @@ interface BindsModule {
     fun bindHeroesRepositoryImpl_to_HeroesRepository(
         impl: HeroesRepositoryImpl
     ):HeroesRepository
+
+    @Suppress("FunctionName")
+    @Binds
+    fun bindLocalDataSourceImpl_to_LocalDataSource(
+        impl: LocalDataSourceImpl
+    ): LocalDataSource
 }
