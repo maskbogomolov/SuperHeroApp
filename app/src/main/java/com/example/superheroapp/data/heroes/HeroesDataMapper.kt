@@ -1,10 +1,10 @@
-package com.example.superheroapp.data
+package com.example.superheroapp.data.heroes
 
 import com.example.superheroapp.data.module.HeroesDto
 import com.example.superheroapp.domain.Heroes
 
-fun HeroesDto.toDomain(): Heroes{
-    return Heroes(
+fun HeroesDto.toEntity(): HeroesEntity {
+    return HeroesEntity(
         id = this.id,
         images = this.images.md,
         name = this.name,

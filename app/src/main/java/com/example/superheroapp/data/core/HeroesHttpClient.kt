@@ -1,6 +1,6 @@
 package com.example.superheroapp.data.core
 
-import com.example.superheroapp.data.HeroesService
+import com.example.superheroapp.data.heroes.HeroesService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

@@ -1,7 +1,5 @@
 package com.example.superheroapp.data.heroes
 
-import androidx.room.Index
-import com.example.superheroapp.data.HeroesService
 import com.example.superheroapp.data.module.HeroesDto
 import com.example.superheroapp.util.NetworkResponse
 import com.example.superheroapp.util.catchingResponse

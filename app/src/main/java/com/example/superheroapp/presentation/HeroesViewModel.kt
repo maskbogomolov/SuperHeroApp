@@ -1,7 +1,6 @@
 package com.example.superheroapp.presentation
 
 import androidx.lifecycle.*
-import com.example.superheroapp.data.HeroesService
 import com.example.superheroapp.domain.HeroesRepository
 import com.example.superheroapp.util.HeroesResult
 import com.example.superheroapp.util.NetworkResponse

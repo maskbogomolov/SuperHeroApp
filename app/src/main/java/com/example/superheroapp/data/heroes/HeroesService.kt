@@ -1,4 +1,4 @@
-package com.example.superheroapp.data
+package com.example.superheroapp.data.heroes
 
 import com.example.superheroapp.data.module.HeroesDto
 import retrofit2.http.GET
