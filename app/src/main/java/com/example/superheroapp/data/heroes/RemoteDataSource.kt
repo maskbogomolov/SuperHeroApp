@@ -10,6 +10,7 @@ import javax.inject.Inject
 interface RemoteDataSource {
 
     suspend fun getHeroes(): NetworkResponse<List<HeroesDto>, Throwable>
+    suspend fun getDetails(id: String): NetworkResponse<HeroDetailsDto,Throwable>
 }
 class RemoteDataSourceImpl @Inject constructor(private val service: HeroesService): RemoteDataSource{
 
@@ -17,4 +18,10 @@ class RemoteDataSourceImpl @Inject constructor(private val service: HeroesServic
         return catchingResponse { service.getHeroes() }
             .doOnError { error -> Timber.e("getHeroes from server error", error) }
     }
+
+    override suspend fun getDetails(id: String): NetworkResponse<HeroDetailsDto,Throwable> {
+        return catchingResponse { service.getDetails(id) }
+            .doOnError { error -> Timber.e("getHeroes from server error", error) }
+    }
+
 }

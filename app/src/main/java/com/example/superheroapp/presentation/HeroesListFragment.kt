@@ -18,6 +18,9 @@ import com.example.superheroapp.R
 import com.example.superheroapp.databinding.FragmentHeroesListBinding
 import com.example.superheroapp.di.appComponent
 import com.example.superheroapp.util.HeroesResult
+import com.example.superheroapp.util.toGone
+import com.example.superheroapp.util.toInvisible
+import com.example.superheroapp.util.toVisible
 import dagger.Lazy
 import javax.inject.Inject
 
@@ -39,13 +42,11 @@ class HeroesListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val filterArray = resources.getStringArray(R.array.filter)
-        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,filterArray)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, filterArray)
         bind.autoCompleteTextView.setAdapter(arrayAdapter)
         bind.autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
             val str = adapterView.getItemAtPosition(i).toString()
-            val corStr = str.substring(0,str.length-1)
-            Toast.makeText(requireContext(),"${corStr}.",Toast.LENGTH_SHORT).show()
-            viewModel.publisherFlow.value = corStr
+            viewModel.publisherFlow.value = str
         }
     }
 
@@ -54,18 +55,17 @@ class HeroesListFragment : Fragment() {
 
         _binding = FragmentHeroesListBinding.inflate(inflater, container, false)
 
-        val span = when(resources.configuration.orientation){
+        val span = when (resources.configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> 2
             else -> 1
         }
         bind.heroesList.apply {
             adapter = heroesListAdapter
-            layoutManager = GridLayoutManager(requireContext(),span)
+            layoutManager = GridLayoutManager(requireContext(), span)
         }
 
-        bind.shimmerFrameLayout.startShimmer()
-        viewModel.heroesResult.observe(viewLifecycleOwner){
-            when(it){
+        viewModel.heroesResult.observe(viewLifecycleOwner) {
+            when (it) {
                 is HeroesResult.SuccessResult -> {
                     heroesListAdapter.submitList(it.result)
                     hideShimmerEffect()
@@ -76,14 +76,15 @@ class HeroesListFragment : Fragment() {
         return bind.root
     }
 
-    fun showShimmerEffect(){
-        bind.shimmerFrameLayout.visibility = View.VISIBLE
+    fun showShimmerEffect() {
+        bind.heroesList.toGone()
+        bind.shimmerFrameLayout.toVisible()
         bind.shimmerFrameLayout.startShimmer()
-        bind.heroesList.visibility = View.GONE
     }
-    fun hideShimmerEffect(){
-        bind.shimmerFrameLayout.visibility = View.INVISIBLE
-        bind.heroesList.visibility = View.VISIBLE
+
+    fun hideShimmerEffect() {
+        bind.shimmerFrameLayout.toInvisible()
+        bind.heroesList.toVisible()
     }
 
     override fun onDestroy() {
