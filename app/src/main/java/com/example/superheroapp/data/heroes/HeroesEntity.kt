@@ -2,8 +2,9 @@ package com.example.superheroapp.data.heroes
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.superheroapp.util.Const.HEROES_TABLE
 
-@Entity(tableName = "heroes_table")
+@Entity(tableName = HEROES_TABLE)
 data class HeroesEntity(
     @PrimaryKey
     val id: Int,

@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">SuperHeroApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="filter">
+        <item>Marvel Comics</item>
+        <item>Dark Horse Comics</item>
+        <item>George Lucas</item>
+        <item>DC Comics</item>
+        <item>ABC Studios</item>
+    </string-array>
 </resources>

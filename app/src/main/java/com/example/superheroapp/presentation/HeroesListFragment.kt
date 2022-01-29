@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,21 +22,37 @@ import dagger.Lazy
 import javax.inject.Inject
 
 
-class HeroesListFragment : Fragment(R.layout.fragment_heroes_list) {
+class HeroesListFragment : Fragment() {
 
     @Inject
     lateinit var heroesViewModelFactory: Lazy<HeroesViewModel.Factory>
     private val viewModel: HeroesViewModel by viewModels { heroesViewModelFactory.get() }
     private val heroesListAdapter: HeroesListAdapter by lazy { HeroesListAdapter() }
+    private var _binding: FragmentHeroesListBinding? = null
+    private val bind get() = _binding!!
 
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onResume() {
+        super.onResume()
+        val filterArray = resources.getStringArray(R.array.filter)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,filterArray)
 
-        val bind = FragmentHeroesListBinding.bind(view)
+        bind.autoCompleteTextView.setAdapter(arrayAdapter)
+        bind.autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
+            Toast.makeText(requireContext(),"${adapterView.getItemAtPosition(i)}.",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        _binding = FragmentHeroesListBinding.inflate(inflater, container, false)
+
+
 
         val span = when(resources.configuration.orientation){
             Configuration.ORIENTATION_LANDSCAPE -> 2
@@ -49,6 +68,12 @@ class HeroesListFragment : Fragment(R.layout.fragment_heroes_list) {
                 is HeroesResult.SuccessResult -> heroesListAdapter.submitList(it.result)
             }
         }
+        return bind.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

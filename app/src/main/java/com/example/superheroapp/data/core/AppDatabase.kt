@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.superheroapp.data.heroes.HeroesDao
 import com.example.superheroapp.data.heroes.HeroesEntity
+import com.example.superheroapp.util.Const.APP_DATABASE
 
 @Database(entities = [HeroesEntity::class],version = 1,exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
@@ -24,7 +25,7 @@ abstract class AppDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                "app_database"
+                APP_DATABASE
             )
                 .build()
     }
