@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.example.superheroapp.domain.HeroesRepository
 import com.example.superheroapp.util.HeroesResult
 import com.example.superheroapp.util.NetworkResponse
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
@@ -12,17 +13,33 @@ class HeroesViewModel(private val repository: HeroesRepository): ViewModel() {
 
     private val _heroesResult = MutableLiveData<HeroesResult>()
     val heroesResult get() = _heroesResult
-//    val hero = liveData {
-//        val data = repository.getHeroes()
-//        emit(data)
-//    }
+    var publisherFlow = MutableStateFlow("")
+
 
     init {
+        viewModelScope.launch {
+            publisherFlow
+                .sample(500L)
+                .onEach { _heroesResult.value = HeroesResult.Loading }
+                .collect {
+                val data = repository.getHeroesByFilter(publisherFlow.value).firstOrNull()
+                if (data?.isNotEmpty() == true){
+                    _heroesResult.value = HeroesResult.SuccessResult(data)
+                }else{
+                    _heroesResult.value = HeroesResult.ErrorResult(IllegalArgumentException("Heroes error"))
+                }
+            }
+        }
+    }
+    init {
+        loadListHeroes()
+    }
+
+    fun loadListHeroes(){
         viewModelScope.launch {
             handleHeroesState()
         }
     }
-
     private suspend fun handleHeroesState(){
         _heroesResult.value = HeroesResult.Loading
          when (val heroesResult = repository.getHeroes()) {

@@ -1,5 +1,7 @@
 package com.example.superheroapp.util
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlin.coroutines.cancellation.CancellationException
 
 sealed class NetworkResponse<out S, out E> {
@@ -40,3 +42,10 @@ inline fun <S,E> NetworkResponse<S,E>.doOnSuccess(block: (S) -> Unit):NetworkRes
     }
     return this
 }
+
+inline fun <T, R> Flow<Iterable<T>>.mapToHeroes(crossinline transform: suspend (T) -> R): Flow<List<R>> =
+    map { list ->
+        list.map { item ->
+            transform(item)
+        }
+    }

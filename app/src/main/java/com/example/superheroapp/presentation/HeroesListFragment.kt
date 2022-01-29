@@ -40,10 +40,12 @@ class HeroesListFragment : Fragment() {
         super.onResume()
         val filterArray = resources.getStringArray(R.array.filter)
         val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,filterArray)
-
         bind.autoCompleteTextView.setAdapter(arrayAdapter)
         bind.autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            Toast.makeText(requireContext(),"${adapterView.getItemAtPosition(i)}.",Toast.LENGTH_SHORT).show()
+            val str = adapterView.getItemAtPosition(i).toString()
+            val corStr = str.substring(0,str.length-1)
+            Toast.makeText(requireContext(),"${corStr}.",Toast.LENGTH_SHORT).show()
+            viewModel.publisherFlow.value = corStr
         }
     }
 
@@ -62,6 +64,7 @@ class HeroesListFragment : Fragment() {
             adapter = heroesListAdapter
             layoutManager = GridLayoutManager(requireContext(),span)
         }
+
 
         viewModel.heroesResult.observe(viewLifecycleOwner){
             when(it){
