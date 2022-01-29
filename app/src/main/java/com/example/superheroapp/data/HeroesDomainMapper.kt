@@ -11,6 +11,5 @@ fun HeroesEntity.toDomain(): Heroes{
         name = this.name,
         aliases = this.aliases,
         publisher = this.publisher
-
     )
 }

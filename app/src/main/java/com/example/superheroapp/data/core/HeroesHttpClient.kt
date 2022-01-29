@@ -1,6 +1,7 @@
 package com.example.superheroapp.data.core
 
 import com.example.superheroapp.data.heroes.HeroesService
+import com.example.superheroapp.util.Const.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -24,7 +25,7 @@ class HeroesHttpClientImpl @Inject constructor(): HeroesHttpClient{
     }
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://akabab.github.io/superhero-api/api/")
+        .baseUrl(BASE_URL)
         .addConverterFactory(json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
         .client(client)
         .build()
