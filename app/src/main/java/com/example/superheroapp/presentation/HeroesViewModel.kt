@@ -19,8 +19,8 @@ class HeroesViewModel(private val repository: HeroesRepository): ViewModel() {
     init {
         viewModelScope.launch {
             publisherFlow
-                .sample(500L)
                 .onEach { _heroesResult.value = HeroesResult.Loading }
+                .sample(5000L)
                 .collect {
                 val data = repository.getHeroesByFilter(publisherFlow.value).firstOrNull()
                 if (data?.isNotEmpty() == true){

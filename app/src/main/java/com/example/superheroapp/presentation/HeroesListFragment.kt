@@ -54,8 +54,6 @@ class HeroesListFragment : Fragment() {
 
         _binding = FragmentHeroesListBinding.inflate(inflater, container, false)
 
-
-
         val span = when(resources.configuration.orientation){
             Configuration.ORIENTATION_LANDSCAPE -> 2
             else -> 1
@@ -65,13 +63,27 @@ class HeroesListFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(),span)
         }
 
-
+        bind.shimmerFrameLayout.startShimmer()
         viewModel.heroesResult.observe(viewLifecycleOwner){
             when(it){
-                is HeroesResult.SuccessResult -> heroesListAdapter.submitList(it.result)
+                is HeroesResult.SuccessResult -> {
+                    heroesListAdapter.submitList(it.result)
+                    hideShimmerEffect()
+                }
+                is HeroesResult.Loading -> showShimmerEffect()
             }
         }
         return bind.root
+    }
+
+    fun showShimmerEffect(){
+        bind.shimmerFrameLayout.visibility = View.VISIBLE
+        bind.shimmerFrameLayout.startShimmer()
+        bind.heroesList.visibility = View.GONE
+    }
+    fun hideShimmerEffect(){
+        bind.shimmerFrameLayout.visibility = View.INVISIBLE
+        bind.heroesList.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {
