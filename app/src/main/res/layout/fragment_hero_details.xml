@@ -21,6 +21,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/hero_image_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
@@ -29,6 +30,7 @@
                 tools:src="@tools:sample/avatars" />
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -51,25 +53,22 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/hero_aliases_details"
-                android:layout_width="wrap_content"
+                android:id="@+id/hero_name_details"
+                style="@style/hero_details_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 app:layout_constraintHorizontal_bias="0"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="@+id/hero_name_details"
-                app:layout_constraintTop_toBottomOf="@+id/hero_name_details"
+                app:layout_constraintStart_toStartOf="@+id/hero_aliases_details"
+                app:layout_constraintTop_toBottomOf="@+id/hero_aliases_details"
                 tools:text="Insider" />
 
             <TextView
-                android:id="@+id/hero_name_details"
+                android:id="@+id/hero_aliases_details"
+                style="@style/hero_details_aliases"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/accent"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintEnd_toStartOf="@+id/imageView"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:src="@drawable/empty_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

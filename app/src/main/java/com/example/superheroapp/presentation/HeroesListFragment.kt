@@ -10,13 +10,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.superheroapp.R
 import com.example.superheroapp.databinding.FragmentHeroesListBinding
 import com.example.superheroapp.di.appComponent
+import com.example.superheroapp.util.Const.ALL_HEROES
 import com.example.superheroapp.util.HeroesResult
 import com.example.superheroapp.util.toGone
 import com.example.superheroapp.util.toInvisible
@@ -45,8 +44,11 @@ class HeroesListFragment : Fragment() {
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, filterArray)
         bind.autoCompleteTextView.setAdapter(arrayAdapter)
         bind.autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            val str = adapterView.getItemAtPosition(i).toString()
-            viewModel.publisherFlow.value = str
+            val str = adapterView.getItemAtPosition(i)
+            when(i){
+                0 -> viewModel.publisherFlow.value = ALL_HEROES
+                else -> viewModel.publisherFlow.value = str.toString()
+            }
         }
     }
 
@@ -64,16 +66,19 @@ class HeroesListFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), span)
         }
 
-        viewModel.heroesResult.observe(viewLifecycleOwner) {
-            when (it) {
-                is HeroesResult.SuccessResult -> {
-                    heroesListAdapter.submitList(it.result)
-                    hideShimmerEffect()
-                }
-                is HeroesResult.Loading -> showShimmerEffect()
-            }
-        }
+        viewModel.heroesResult.observe(viewLifecycleOwner,::handleListHeroes)
+
         return bind.root
+    }
+    private fun handleListHeroes(state: HeroesResult){
+        when(state){
+            is HeroesResult.SuccessResult -> {
+                heroesListAdapter.submitList(state.result)
+                hideShimmerEffect()
+            }
+            is HeroesResult.Loading -> showShimmerEffect()
+            is HeroesResult.ErrorResult -> Toast.makeText(requireContext(),"error",Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun showShimmerEffect() {

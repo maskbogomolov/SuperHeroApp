@@ -16,12 +16,14 @@
         <item name="android:background">@color/primaryLight</item>
     </style>
 
+    <!-- HeroList -->
     <style name="hero_aliases">
         <item name="android:textColor">@color/textHeadline</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginTop">8dp</item>
+        <item name="android:maxLines">2</item>
     </style>
 
     <style name="hero_name">
@@ -29,7 +31,28 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">4dp</item>
+        <item name="android:maxLines">2</item>
     </style>
 
+    <!-- HeroDetails -->
 
+    <style name="hero_details_aliases">
+        <item name="android:textColor">@color/textHeadline</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:maxLines">2</item>
+
+    </style>
+
+    <style name="hero_details_name">
+        <item name="android:textColor">@color/textBody</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:maxLines">2</item>
+    </style>
 </resources>

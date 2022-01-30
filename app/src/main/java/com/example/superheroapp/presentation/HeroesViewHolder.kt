@@ -16,6 +16,8 @@ import com.example.superheroapp.util.Const.GEORGE_LUCAS_COMICS
 import com.example.superheroapp.util.Const.GEORGE_LUCAS_COMICS_IMAGE_URL
 import com.example.superheroapp.util.Const.MARVEL_COMICS
 import com.example.superheroapp.util.Const.MARVEL_COMICS_IMAGE_URL
+import com.example.superheroapp.util.Const.NBC_COMICS
+import com.example.superheroapp.util.Const.NBC_COMICS_IMAGE_URL
 
 class HeroesViewHolder(
     private val binding: HeroItemBinding
@@ -27,6 +29,7 @@ class HeroesViewHolder(
         DARK_HORSE_COMICS to DARK_HORSE_COMICS_IMAGE_URL,
         GEORGE_LUCAS_COMICS to GEORGE_LUCAS_COMICS_IMAGE_URL,
         ABC_STUDIOS_COMICS to ABC_STUDIOS_COMICS_IMAGE_URL,
+        NBC_COMICS to NBC_COMICS_IMAGE_URL
         // и т.д
     )
 
@@ -41,8 +44,12 @@ class HeroesViewHolder(
         }
     }
     fun navigateToDetails(data: Heroes,view: View) {
+        var logo = ""
+        holderStudioImages.takeIf { it.containsKey(data.publisher) }?.apply {
+            logo = get(data.publisher).toString()
+        }
         val direction = HeroesListFragmentDirections
-            .actionHeroesListFragmentToHeroDetailsFragment(data.id)
+            .actionHeroesListFragmentToHeroDetailsFragment(data.id,data.images,logo)
         view.findNavController().navigate(direction)
     }
 

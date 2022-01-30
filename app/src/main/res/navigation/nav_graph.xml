@@ -22,5 +22,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument android:name="publisher_logo" />
     </fragment>
 </navigation>
