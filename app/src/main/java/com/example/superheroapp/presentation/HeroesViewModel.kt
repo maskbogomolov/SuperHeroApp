@@ -15,11 +15,6 @@ class HeroesViewModel(private val repository: HeroesRepository): ViewModel() {
     val heroesResult get() = _heroesResult
     var publisherFlow = MutableStateFlow("")
 
-    val livedata = liveData{
-        val data = repository.getDetails("1")
-        emit(data)
-    }
-
     init {
         viewModelScope.launch {
             publisherFlow

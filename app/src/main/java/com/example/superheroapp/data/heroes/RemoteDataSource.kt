@@ -21,7 +21,7 @@ class RemoteDataSourceImpl @Inject constructor(private val service: HeroesServic
     }
 
     override suspend fun getDetails(id: String): NetworkResponse<HeroDetailsDto,Throwable> {
-        return catchingResponse { service.getDetails() }
+        return catchingResponse { service.getDetails(id) }
             .doOnError { error -> Timber.e("getHeroes from server error", error) }
     }
 

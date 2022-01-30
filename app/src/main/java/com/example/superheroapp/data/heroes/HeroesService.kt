@@ -10,7 +10,8 @@ interface HeroesService {
     @GET("all.json")
     suspend fun getHeroes(): List<HeroesDto>
 
-    @GET("biography/2.json")
+    @GET("biography/{id}.json")
     suspend fun getDetails(
+        @Path("id") id : String
     ): HeroDetailsDto
 }

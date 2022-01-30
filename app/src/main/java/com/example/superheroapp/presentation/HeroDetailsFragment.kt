@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.superheroapp.R
 import com.example.superheroapp.databinding.FragmentHeroDetailsBinding
 import com.example.superheroapp.di.appComponent
+import com.example.superheroapp.util.HeroesResult
 import com.example.superheroapp.util.NetworkResponse
 import dagger.Lazy
 import javax.inject.Inject
@@ -18,21 +20,28 @@ import javax.inject.Inject
 class HeroDetailsFragment : Fragment(R.layout.fragment_hero_details) {
 
     @Inject
-    lateinit var heroesViewModelFactory: Lazy<HeroesViewModel.Factory>
-    private val viewModel: HeroesViewModel by viewModels { heroesViewModelFactory.get() }
+    lateinit var heroViewModelFactory: Lazy<HeroDetailsViewModel.DetailsFactory>
+    private val viewModel: HeroDetailsViewModel by viewModels { heroViewModelFactory.get() }
+    private val args by navArgs<HeroDetailsFragmentArgs>()
 
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val id = args.id.toString()
+        viewModel.loadListHeroes(id)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val bind = FragmentHeroDetailsBinding.bind(view)
-        viewModel.livedata.observe(viewLifecycleOwner){
+        viewModel.heroDetailsResult.observe(viewLifecycleOwner){
             when(it){
-                is NetworkResponse.Success -> bind.heroNameDetails.text = it.result.fullName
-                is NetworkResponse.Error -> Toast.makeText(requireContext(),"error",Toast.LENGTH_SHORT).show()
+                is HeroesResult.SuccessDetailsResult -> bind.heroNameDetails.text = it.result.fullName
+                is HeroesResult.ErrorResult -> Toast.makeText(requireContext(),"error",Toast.LENGTH_SHORT).show()
             }
         }
     }
