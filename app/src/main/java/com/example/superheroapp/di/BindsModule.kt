@@ -8,6 +8,8 @@ import com.example.superheroapp.data.heroes.LocalDataSourceImpl
 import com.example.superheroapp.data.heroes.RemoteDataSource
 import com.example.superheroapp.data.heroes.RemoteDataSourceImpl
 import com.example.superheroapp.domain.HeroesRepository
+import com.example.superheroapp.util.ThemeUtils
+import com.example.superheroapp.util.ThemeUtilsImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -38,4 +40,10 @@ interface BindsModule {
     fun bindLocalDataSourceImpl_to_LocalDataSource(
         impl: LocalDataSourceImpl
     ): LocalDataSource
+
+    @Suppress("FunctionName")
+    @Binds
+    fun bindThemeUtilsImpl_to_ThemeUtils(
+        impl: ThemeUtilsImpl
+    ): ThemeUtils
 }
