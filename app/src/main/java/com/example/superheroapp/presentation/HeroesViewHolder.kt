@@ -1,5 +1,7 @@
 package com.example.superheroapp.presentation
 
+import android.view.View
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.superheroapp.databinding.HeroItemBinding
@@ -34,6 +36,14 @@ class HeroesViewHolder(
         setName(data)
         loadImage(data)
         loadStudioImage(data)
+        itemView.setOnClickListener {
+            navigateToDetails(data,it)
+        }
+    }
+    fun navigateToDetails(data: Heroes,view: View) {
+        val direction = HeroesListFragmentDirections
+            .actionHeroesListFragmentToHeroDetailsFragment(data.id)
+        view.findNavController().navigate(direction)
     }
 
     fun loadImage(data: Heroes){

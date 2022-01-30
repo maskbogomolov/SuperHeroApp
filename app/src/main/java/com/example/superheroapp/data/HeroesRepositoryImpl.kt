@@ -1,8 +1,11 @@
 package com.example.superheroapp.data
 
+
 import com.example.superheroapp.data.heroes.LocalDataSource
 import com.example.superheroapp.data.heroes.RemoteDataSource
 import com.example.superheroapp.data.heroes.toEntity
+import com.example.superheroapp.data.module.HeroDetailsDto
+import com.example.superheroapp.domain.HeroDetails
 import com.example.superheroapp.domain.Heroes
 import com.example.superheroapp.domain.HeroesRepository
 import com.example.superheroapp.util.NetworkResponse
@@ -28,5 +31,10 @@ class HeroesRepositoryImpl @Inject constructor(
     override suspend fun getHeroesByFilter(publisher: String): Flow<List<Heroes>> {
         return localDataSource.getHeroesByFilter(publisher)
             .mapToHeroes{ heroesEntity -> heroesEntity.toDomain() }
+    }
+
+    override suspend fun getDetails(id: String): NetworkResponse<HeroDetails, Throwable> {
+        return remoteDataSource.getDetails(id)
+            .mapSuccess { heroDetailsDto -> heroDetailsDto.toHeroDetails() }
     }
 }

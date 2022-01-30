@@ -1,5 +1,6 @@
 package com.example.superheroapp.data.heroes
 
+import com.example.superheroapp.data.module.HeroDetailsDto
 import com.example.superheroapp.data.module.HeroesDto
 import com.example.superheroapp.util.NetworkResponse
 import com.example.superheroapp.util.catchingResponse
@@ -20,7 +21,7 @@ class RemoteDataSourceImpl @Inject constructor(private val service: HeroesServic
     }
 
     override suspend fun getDetails(id: String): NetworkResponse<HeroDetailsDto,Throwable> {
-        return catchingResponse { service.getDetails(id) }
+        return catchingResponse { service.getDetails() }
             .doOnError { error -> Timber.e("getHeroes from server error", error) }
     }
 

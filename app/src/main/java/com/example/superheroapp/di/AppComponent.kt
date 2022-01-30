@@ -2,6 +2,7 @@ package com.example.superheroapp.di
 
 import android.content.Context
 import com.example.superheroapp.MainActivity
+import com.example.superheroapp.presentation.HeroDetailsFragment
 import com.example.superheroapp.presentation.HeroesListFragment
 import dagger.Component
 import dagger.Module
@@ -11,6 +12,7 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(heroesListFragment: HeroesListFragment)
+    fun inject(heroDetailsFragment: HeroDetailsFragment)
 
     @Component.Builder
     interface Builder{
