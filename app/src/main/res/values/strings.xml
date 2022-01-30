@@ -11,4 +11,5 @@
         <item>NBC - Heroes</item>
     </string-array>
 
+    <string name="Error_message">Check your internet connection</string>
 </resources>

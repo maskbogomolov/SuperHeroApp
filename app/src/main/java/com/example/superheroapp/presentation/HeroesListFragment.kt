@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ThemeUtils
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.superheroapp.R
 import com.example.superheroapp.databinding.FragmentHeroesListBinding
 import com.example.superheroapp.di.appComponent
@@ -30,7 +31,6 @@ class HeroesListFragment : Fragment() {
     private val heroesListAdapter: HeroesListAdapter by lazy { HeroesListAdapter() }
     private var _binding: FragmentHeroesListBinding? = null
     private val bind get() = _binding!!
-
     @Inject
     lateinit var themeUtils: com.example.superheroapp.util.ThemeUtils
 
@@ -97,7 +97,10 @@ class HeroesListFragment : Fragment() {
                 hideShimmerEffect()
             }
             is HeroesResult.Loading -> showShimmerEffect()
-            is HeroesResult.ErrorResult -> Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+            is HeroesResult.ErrorResult -> {
+                hideShimmerEffect()
+                Toast.makeText(requireContext(), R.string.Error_message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

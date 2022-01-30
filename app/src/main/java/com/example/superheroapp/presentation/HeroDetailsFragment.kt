@@ -17,6 +17,8 @@ import com.example.superheroapp.databinding.FragmentHeroesListBinding
 import com.example.superheroapp.di.appComponent
 import com.example.superheroapp.util.HeroesResult
 import com.example.superheroapp.util.NetworkResponse
+import com.example.superheroapp.util.toInvisible
+import com.example.superheroapp.util.toVisible
 import dagger.Lazy
 import javax.inject.Inject
 
@@ -52,10 +54,14 @@ class HeroDetailsFragment : Fragment(R.layout.fragment_hero_details) {
             is HeroesResult.SuccessDetailsResult -> {
                 bind.heroNameDetails.text = state.result.fullName
                 bind.heroAliasesDetails.text = state.result.aliases
-                if (args.publisherLogo.isNotEmpty()) bind.imageView.load(args.publisherLogo)
+                bind.publisherLogo.toVisible()
+                if (args.publisherLogo.isNotEmpty()) bind.publisherLogo.load(args.publisherLogo)
                 bind.heroImageDetails.load(args.image)
             }
-            is HeroesResult.ErrorResult -> {}
+            is HeroesResult.ErrorResult -> {
+                Toast.makeText(requireContext(),R.string.Error_message,Toast.LENGTH_LONG).show()
+                bind.publisherLogo.toInvisible()
+            }
         }
     }
 

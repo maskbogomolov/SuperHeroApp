@@ -4,7 +4,7 @@ object Const {
     const val BASE_URL = "https://akabab.github.io/superhero-api/api/"
     const val APP_DATABASE = "app_database"
     const val HEROES_TABLE = "heroes_table"
-    const val ALL_HEROES = " "
+    const val ALL_HEROES = ""
     const val MARVEL_COMICS = "Marvel Comics"
     const val MARVEL_COMICS_IMAGE_URL = "https://cdn0.iconfinder.com/data/icons/logos-21/40/Marvel-128.png"
     const val DARK_HORSE_COMICS = "Dark Horse Comics"

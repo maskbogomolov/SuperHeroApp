@@ -29,8 +29,6 @@ class HeroesViewModel(private val repository: HeroesRepository): ViewModel() {
                 }
             }
         }
-    }
-    init {
         loadListHeroes()
     }
 
