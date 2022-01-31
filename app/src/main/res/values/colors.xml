@@ -10,6 +10,11 @@
     <color name="textHeadline">#1f1f1f</color>
     <color name="textBody">#4f4f4f</color>
 
+    <!--Text colors for Details biography-->
+    <color name="textPrimary">#050510</color>
+    <color name="textSecondary">#55555C</color>
+
+
     <!--For shimmer-->
     <color name="colorGrey">#dddddd</color>
 

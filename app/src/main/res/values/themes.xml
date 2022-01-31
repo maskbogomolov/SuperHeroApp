@@ -55,4 +55,37 @@
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:maxLines">2</item>
     </style>
+
+    <style name="head_alter_egos">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">@string/alter_egos</item>
+    </style>
+    <style name="alter_egos_txt">
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="head_place_of_birth">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">@string/head_place_of_birth</item>
+    </style>
+
+    <style name="head_place_of_birth_txt">
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="head_first_appearance">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">@string/head_first_appearance</item>
+    </style>
+
+    <style name="first_appearance_txt">
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 </resources>

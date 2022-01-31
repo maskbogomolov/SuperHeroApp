@@ -49,6 +49,7 @@
         style="@style/Theme.SuperHeroApp.BackgroundStyle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/holder_hero_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -82,10 +83,75 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/empty_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/head_alter_egos"
+                style="@style/head_alter_egos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hero_name_details" />
+
+            <TextView
+                android:id="@+id/alter_egos_txt"
+                style="@style/alter_egos_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/head_alter_egos"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/head_alter_egos"
+                app:layout_constraintTop_toTopOf="@+id/head_alter_egos"
+                tools:text="No alter egos found."/>
+
+            <TextView
+                android:id="@+id/head_place_of_birth"
+                style="@style/head_place_of_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/head_alter_egos"
+                app:layout_constraintTop_toBottomOf="@+id/head_alter_egos" />
+
+            <TextView
+                android:id="@+id/place_of_birth_txt"
+                style="@style/head_place_of_birth_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/head_place_of_birth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/head_place_of_birth"
+                app:layout_constraintTop_toTopOf="@+id/head_place_of_birth"
+                tools:text="Scarsdale, Arizona"/>
+
+            <TextView
+                android:id="@+id/head_first_appearance"
+                style="@style/head_first_appearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/head_place_of_birth"
+                app:layout_constraintTop_toBottomOf="@+id/head_place_of_birth" />
+
+            <TextView
+                android:id="@+id/first_appearance_txt"
+                style="@style/first_appearance_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/head_first_appearance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/head_first_appearance"
+                app:layout_constraintTop_toTopOf="@+id/head_first_appearance"
+                tools:text="Hulk Vol 2 #2 (April, 2008) (as A-Bomb)"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -54,13 +54,16 @@ class HeroDetailsFragment : Fragment(R.layout.fragment_hero_details) {
             is HeroesResult.SuccessDetailsResult -> {
                 bind.heroNameDetails.text = state.result.fullName
                 bind.heroAliasesDetails.text = state.result.aliases
-                bind.publisherLogo.toVisible()
+                bind.alterEgosTxt.text = state.result.alterEgos
+                bind.placeOfBirthTxt.text = state.result.placeOfBirth
+                bind.firstAppearanceTxt.text = state.result.firstAppearance
+                bind.holderHeroInfo.toVisible()
                 if (args.publisherLogo.isNotEmpty()) bind.publisherLogo.load(args.publisherLogo)
                 bind.heroImageDetails.load(args.image)
             }
             is HeroesResult.ErrorResult -> {
                 Toast.makeText(requireContext(),R.string.Error_message,Toast.LENGTH_LONG).show()
-                bind.publisherLogo.toInvisible()
+                bind.holderHeroInfo.toInvisible()
             }
         }
     }

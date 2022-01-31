@@ -9,7 +9,17 @@
         <item>DC Comics</item>
         <item>ABC Studios</item>
         <item>NBC - Heroes</item>
+        <item>Star Trek</item>
+        <item>SyFy</item>
+        <item>IDW Publishing</item>
+        <item>Icon Comics</item>
+        <item>Image Comics</item>
     </string-array>
 
+    <string name="all_heroes">All heroes</string>
     <string name="Error_message">Check your internet connection</string>
+    <string name="alter_egos">Alter Egos:</string>
+    <string name="head_place_of_birth">Place Of Birth:</string>
+    <string name="head_first_appearance">First Appearance:</string>
+
 </resources>
